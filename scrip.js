@@ -1,4 +1,4 @@
-const API_URL = "https://corregedoria-api.onrender.com/dados";
+const API_URL = "https://corregedoria-api2.onrender.com";
 
 async function carregarPainel() {
     const res = await fetch(API_URL);
