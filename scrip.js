@@ -1,32 +1,22 @@
-const API_URL = "https://web-painel-corregedoria.onrender.com";
+const API_URL = "https://corregedoria-api.onrender.com/dados";
 
-async function atualizarDashboard() {
-    const res = await fetch(`${API_URL}/dashboard`);
-    const data = await res.json();
+async function carregarPainel() {
+    const res = await fetch(API_URL);
+    const dados = await res.json();
 
-    document.getElementById("convocacoes-count").innerText = data.convocacoes;
-    document.getElementById("pads-count").innerText = data.pads;
-    document.getElementById("ipms-count").innerText = data.ipms;
-}
+    document.getElementById("conv-count").innerText = dados.convocacoes.length;
+    document.getElementById("pad-count").innerText = dados.pads.length;
+    document.getElementById("ipm-count").innerText = dados.ipms.length;
 
-async function carregarConvocacoes() {
-    const res = await fetch(`${API_URL}/convocacoes`);
-    const lista = await res.json();
-
-    const tabela = document.getElementById("tabela-convocacoes");
-    tabela.innerHTML = "";
-
-    lista.forEach(item => {
-        tabela.innerHTML += `
-            <tr>
-                <td>${item.policial}</td>
-                <td>${item.data}</td>
-                <td>${item.hora}</td>
-                <td>${item.responsavel}</td>
-            </tr>
+    // Lista de convocações
+    const listaConv = document.getElementById("lista-convocacoes");
+    listaConv.innerHTML = "";
+    dados.convocacoes.forEach(c => {
+        listaConv.innerHTML += `
+          <li>${c.nome} — ${c.data} às ${c.hora}</li>
         `;
     });
 }
 
-setInterval(atualizarDashboard, 3000);
-setInterval(carregarConvocacoes, 3000);
+carregarPainel();
+setInterval(carregarPainel, 5000);
