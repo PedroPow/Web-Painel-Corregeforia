@@ -1,4 +1,4 @@
-const API_URL = "https://SEU_PROJETO_RENDER.onrender.com";
+const API_URL = "https://web-painel-corregedoria.onrender.com";
 
 async function atualizarDashboard() {
     const res = await fetch(`${API_URL}/dashboard`);

@@ -75,7 +75,7 @@
                 <div id="countConv" class="text-3xl font-bold mt-2">0</div>
                 <div class="muted text-xs mt-1">em aberto</div>
               </div>
-              <div class="text-4xl" style="color:var(--neon1)">👮‍♂️</div>
+              <div class="text-4xl" style="color:var(--neon1)"></div>
             </div>
           </div>
           <!-- Card 2 -->
@@ -86,7 +86,7 @@
                 <div id="countPad" class="text-3xl font-bold mt-2">0</div>
                 <div class="muted text-xs mt-1">ativo(s)</div>
               </div>
-              <div class="text-4xl" style="color:var(--neon2)">📄</div>
+              <div class="text-4xl" style="color:var(--neon2)"></div>
             </div>
           </div>
           <!-- Card 3 -->
@@ -97,7 +97,7 @@
                 <div id="countIpm" class="text-3xl font-bold mt-2">0</div>
                 <div class="muted text-xs mt-1">investigações</div>
               </div>
-              <div class="text-4xl" style="color:var(--neon3)">🕵️‍♂️</div>
+              <div class="text-4xl" style="color:var(--neon3)"></div>
             </div>
           </div>
         </div>
@@ -157,7 +157,7 @@
       </aside>
     </main>
 
-    <footer class="mt-8 text-sm muted text-center">Protótipo • DPM Corregedoria — Design gamer + SWAT</footer>
+    <footer class="mt-8 text-sm muted text-center">Protótipo • DPM Corregedoria — SSP GUARUJÁ RP®</footer>
   </div>
 
   <!-- Modal Básico -->
@@ -172,6 +172,14 @@
   </div>
 
   <script>
+    async function carregarStatus() {
+    const res = await fetch("https://painel-corregedoria-api.onrender.com/api/status");
+    const data = await res.json();
+
+    document.getElementById("status").innerText = data.status;
+    document.getElementById("denuncias").innerText = data.quantidade_denuncias;
+}
+
     // => Troque para sua API (Render/Supabase/endpoint)
     const API_BASE = "https://api-corregedoria.onrender.com"; // <--- substituir
 
